@@ -1,0 +1,244 @@
+/*!* Demo 页（首页）专用样式 *!*/
+/* 自定义动画 */
+@keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+    background-size: 200% auto;
+    animation: gradient 3s ease-in-out infinite;
+}
+
+/* 响应式调整 */
+@media (max-width: 640px) {
+    .text-shadow-gold {
+        text-shadow: 0 0 4px rgba(212, 175, 55, 0.4);
+    }
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/*
+  注意：不要在这里设置全局 ::-webkit-scrollbar-thumb 的金色渐变，
+  否则会影响全站其它页面。
+  首页的滚动条 thumb 已在 .demo-theme 下设置为深墨绿。
+*/
+
+/* 图片加载过渡 */
+img {
+    transition: opacity 0.3s ease;
+}
+
+img[src] {
+    opacity: 1;
+}
+
+/* 悬停效果增强 */
+.group:hover .group-hover\:scale-105 {
+    transform: scale(1.05);
+}
+
+.group:hover .group-hover\:translate-x-1 {
+    transform: translateX(0.25rem);
+}
+
+/* 确保按钮可点击区域足够大 */
+button, a[role="button"] {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .container {
+
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    #back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
+/* 确保图标正确显示 */
+i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 改善可访问性 */
+[aria-label]:hover::after {
+    content: attr(aria-label);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+/*!* 全屏英雄区样式 *!*/
+/* 注意：这里不要使用全局 :root，避免污染其它页面。navbar 高度变量已放在 .demo-theme 中。 */
+
+/* 英雄区：占满可视区域（减去固定导航高度），并垂直居中内容 */
+.hero-screen {
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  padding-top: 20px; /* 避免额外顶距 */
+  padding-bottom: 0;
+  /* 让内容略微下移，而不是贴到导航下方 */
+  margin-top: 8px;
+}
+@media (min-width: 768px) {
+  .hero-screen { margin-top: 16px; }
+}
+
+/* 内部容器用于在大屏时左右分栏、在小屏时垂直堆叠并保持居中 */
+.hero-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .hero-container { display: flex; flex-direction: row; align-items: center; gap: 2.25rem; }
+}
+
+/* 保证 hero 内图片容器不会超出可见高度（在小屏时） */
+.hero-visual-aspect {
+  width: 100%;
+  max-height: calc(100vh - var(--navbar-height) - 120px);
+}
+
+/* 小幅微调：后续页面内容与固定导航的衔接（避免被遮挡） */
+.main-content { padding-top: calc(var(--navbar-height) + 12px); }
+
+/*!* 金色圆形图标容器（用于功能卡片主视觉） *!*/
+/*.icon-ring-gold {*/
+/*  width: 6rem; !* 96px *!*/
+/*  height: 6rem;*/
+/*  border-radius: 9999px;*/
+/*  background: rgba(212, 175, 55, 0.08);*/
+/*  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);*/
+/*  outline: 1px solid rgba(212, 175, 55, 0.3);*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*}*/
+
+/*!* CTA 按钮轻微位移与阴影动效 *!*/
+/*.btn-float {*/
+/*  transition: transform 140ms ease, box-shadow 140ms ease;*/
+/*}*/
+/*.btn-float:hover {*/
+/*  transform: translateY(2px);*/
+/*  box-shadow: 0 8px 22px rgba(212, 175, 55, 0.28);*/
+/*}*/
+
+/*!* Logo 灰度交互（客户案例） *!*/
+/*.logo-gray-hover {*/
+/*  filter: grayscale(100%);*/
+/*  transition: filter 160ms ease;*/
+/*}*/
+/*.logo-gray-hover:hover {*/
+/*  filter: grayscale(0%);*/
+/*}*/
+
+/*!* 页脚列表项前的图标与文本对齐优化 *!*/
+/*.footer-item i { margin-right: 0.5rem; }*/
+
+/*!* 页眉大标题的光晕文本（若 Tailwind @layer 未启用时兜底） *!*/
+/*.text-shadow-gold {*/
+/*  text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);*/
+/*}*/
+
+/* Demo 页（首页）专用样式：通过 .demo-theme 作用域隔离，避免影响其它页面 */
+
+.demo-theme {
+  /* 估算导航高度；可根据真实导航高度微调（移动端/桌面分别覆盖） */
+  --navbar-height: 64px;
+}
+@media (min-width: 1024px) {
+  .demo-theme { --navbar-height: 72px; }
+}
+
+.demo-theme {
+  /*
+    深墨绿主题色板（只替换原金色高亮用色；黑色背景仍沿用原 bg-dark/bg-darkgray 定义）
+    说明：primary-600/500 更深，用于主按钮与高亮块，避免“荧光绿”。
+  */
+  --demo-primary-700: #062418;
+  --demo-primary-600: #083122;
+  --demo-primary-500: #0a3b28; /* 深墨绿（主强调色） */
+  --demo-primary-400: #0f5638;
+  --demo-primary-300: #1f8f5a;
+  --demo-primary-200: #66c598;
+
+  --demo-shadow-primary: 0 14px 34px rgba(10, 59, 40, 0.35);
+}
+
+/* 只做“金色→墨绿”的高亮替换，不改变黑色背景体系 */
+
+/* 1) gold 语义类（存在真实定义时） */
+.demo-theme :deep(.text-gold) { color: var(--demo-primary-300) !important; }
+.demo-theme :deep(.bg-gold) { background-color: var(--demo-primary-500) !important; }
+
+/* 2) Tailwind 风格透明度 variants（class token 精确匹配） */
+.demo-theme :deep([class~="bg-gold/5"]) { background-color: rgba(10, 59, 40, 0.06) !important; }
+.demo-theme :deep([class~="bg-gold/10"]) { background-color: rgba(10, 59, 40, 0.10) !important; }
+.demo-theme :deep([class~="bg-gold/20"]) { background-color: rgba(10, 59, 40, 0.16) !important; }
+.demo-theme :deep([class~="bg-gold/90"]) { background-color: rgba(10, 59, 40, 0.92) !important; }
+
+.demo-theme :deep([class~="text-gold/50"]) { color: rgba(102, 197, 152, 0.55) !important; }
+.demo-theme :deep([class~="text-gold/60"]) { color: rgba(102, 197, 152, 0.65) !important; }
+.demo-theme :deep([class~="text-gold/80"]) { color: rgba(102, 197, 152, 0.85) !important; }
+
+.demo-theme :deep([class~="border-gold/10"]) { border-color: rgba(31, 143, 90, 0.14) !important; }
+.demo-theme :deep([class~="border-gold/20"]) { border-color: rgba(31, 143, 90, 0.22) !important; }
+.demo-theme :deep([class~="border-gold/30"]) { border-color: rgba(31, 143, 90, 0.34) !important; }
+.demo-theme :deep([class~="border-gold/50"]) { border-color: rgba(31, 143, 90, 0.55) !important; }
+
+.demo-theme :deep([class~="shadow-gold/10"]) { box-shadow: 0 10px 26px rgba(10, 59, 40, 0.18) !important; }
+.demo-theme :deep([class~="shadow-gold/20"]) { box-shadow: 0 12px 30px rgba(10, 59, 40, 0.24) !important; }
+.demo-theme :deep([class~="shadow-gold/30"]) { box-shadow: 0 14px 34px rgba(10, 59, 40, 0.30) !important; }
+.demo-theme :deep([class~="shadow-gold/40"]) { box-shadow: 0 16px 38px rgba(10, 59, 40, 0.36) !important; }
+
+.demo-theme :deep([class~="hover:bg-gold/10"]:hover) { background-color: rgba(10, 59, 40, 0.10) !important; }
+
+/* 兼容：有些地方会直接用 border-gold / shadow-gold / to-gold（没有 /xx 后缀） */
+.demo-theme :deep(.border-gold) { border-color: rgba(31, 143, 90, 0.45) !important; }
+.demo-theme :deep(.shadow-gold) { box-shadow: var(--demo-shadow-primary) !important; }
+
+.demo-theme :deep(.bg-gradient-to-r.to-gold) {
+  background-image: linear-gradient(90deg, var(--demo-primary-600), var(--demo-primary-200));
+}
+.demo-theme :deep(.bg-gradient-to-r.via-yellow-200) {
+  background-image: linear-gradient(90deg, var(--demo-primary-600), rgba(102, 197, 152, 0.9), var(--demo-primary-600));
+}
+
+/* 如果你在文件里还能看到以下旧规则，请务必删除（它们会把黑底改成绿底）：
+.demo-theme :deep(.bg-dark) { ... }
+.demo-theme :deep(.bg-darkgray) { ... }
+*/
